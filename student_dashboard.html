@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#f4f6f9;
+}
+
+/* Header */
+.header{
+    background:#2d6cdf;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* Main Container */
+.container{
+    display:flex;
+}
+
+/* Sidebar */
+.sidebar{
+    width:220px;
+    height:100vh;
+    background:#2c3e50;
+    padding-top:20px;
+}
+
+.sidebar a{
+    display:block;
+    padding:14px;
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:#1abc9c;
+}
+
+/* Content */
+.content{
+    flex:1;
+    padding:20px;
+}
+
+/* Cards */
+.card{
+    background:white;
+    padding:20px;
+    margin:10px 0;
+    border-radius:12px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* Grid Cards */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+/* Button */
+button{
+    padding:10px 20px;
+    background:#2d6cdf;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+button:hover{
+    background:#1b4fbf;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        height:auto;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+    🎓 Student Dashboard
+</div>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <a href="#" onclick="showSection('home')">🏠 Home</a>
+
+        <a href="#" onclick="showSection('performance')">
+            📊 Performance
+        </a>
+
+        <!-- External Pages -->
+        <a href="attendance.html">📸 Face Attendance</a>
+
+        <a href="engagement.html">📈 Engagement</a>
+
+        <a href="video_class.html">🎥 Live Class</a>
+
+        <a href="#" onclick="logout()">🚪 Logout</a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Home Section -->
+        <div id="home">
+
+            <div class="card">
+                <h2>Welcome Student 👨‍🎓</h2>
+                <p>
+                    This is your virtual classroom dashboard.
+                </p>
+            </div>
+
+            <div class="grid">
+
+                <div class="card">
+                    <h3>Attendance</h3>
+                    <p>80%</p>
+                </div>
+
+                <div class="card">
+                    <h3>Average Marks</h3>
+                    <p>75%</p>
+                </div>
+
+                <div class="card">
+                    <h3>Status</h3>
+                    <p>Good 👍</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Performance Section -->
+        <div id="performance" style="display:none;">
+
+            <div class="card">
+
+                <h2>Performance Analysis</h2>
+
+                <p><b>Attendance:</b> 80%</p>
+
+                <p><b>Marks:</b> 75%</p>
+
+                <p>
+                    <b>Prediction:</b>
+                    <span id="prediction">---</span>
+                </p>
+
+                <button onclick="getPrediction()">
+                    Check Prediction
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* Show Sections */
+function showSection(section){
+
+    document.getElementById("home").style.display = "none";
+    document.getElementById("performance").style.display = "none";
+
+    document.getElementById(section).style.display = "block";
+}
+
+/* Logout */
+function logout(){
+
+    window.location.href = "login.html";
+}
+
+/* ML Prediction */
+function getPrediction(){
+
+    fetch("http://127.0.0.1:5000/predict", {
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            attendance:70,
+            marks:65,
+            engagement:60
+
+        })
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if(data.result == 1){
+
+            document.getElementById("prediction").innerHTML =
+            "SAFE ✅";
+
+        }
+        else{
+
+            document.getElementById("prediction").innerHTML =
+            "AT RISK ⚠️";
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+        alert("Flask Server Not Running ❌");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

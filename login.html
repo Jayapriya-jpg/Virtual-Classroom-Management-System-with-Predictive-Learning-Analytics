@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Virtual Classroom Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box{
+    background:white;
+    width:380px;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+h2{
+    margin-bottom:20px;
+}
+
+.input-group{
+    margin:15px 0;
+    position:relative;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:15px;
+    box-sizing:border-box;
+}
+
+.toggle{
+    position:absolute;
+    right:15px;
+    top:12px;
+    cursor:pointer;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#2d6cdf;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1b4fbf;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h2>Virtual Classroom Login</h2>
+
+    <div class="input-group">
+        <input type="text" id="username" placeholder="Username">
+    </div>
+
+    <div class="input-group">
+        <input type="password" id="password" placeholder="Password">
+        <span class="toggle" onclick="togglePassword()">👁️</span>
+    </div>
+
+    <div class="input-group">
+        <select id="role">
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+            <option value="admin">Admin</option>
+        </select>
+    </div>
+
+    <button onclick="login()">Login</button>
+
+</div>
+
+<script>
+function togglePassword() {
+    let pass = document.getElementById("password");
+
+    if(pass.type === "password") {
+        pass.type = "text";
+    } else {
+        pass.type = "password";
+    }
+}
+
+function login() {
+    let user = document.getElementById("username").value.trim();
+    let pass = document.getElementById("password").value.trim();
+    let role = document.getElementById("role").value;
+
+    if(user === "" || pass === "" || role === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    if(role === "student") {
+        window.location.href = "/student";
+    }
+    else if(role === "faculty") {
+        window.location.href = "/faculty_dashboard.html";
+    }
+    else if(role === "admin") {
+        window.location.href = "/admin_dashboard.html";
+    }
+}
+</script>
+
+</body>
+</html>

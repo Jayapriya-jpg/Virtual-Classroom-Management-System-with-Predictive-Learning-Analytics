@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Engagement</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6f9;
+}
+
+.header {
+    background: #2d6cdf;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #2c3e50;
+    color: white;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #1abc9c;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+button {
+    padding: 10px;
+    background: #2d6cdf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    📊 Student Engagement Tracking
+</div>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="student_dashboard.html">Dashboard</a>
+        <a href="attendance.html">Face Attendance</a>
+        <a href="engagement.html">Engagement</a>
+        <a href="video_class.html">Live Class</a>
+        <a href="login.html">Logout</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- Time Tracking -->
+        <div class="card">
+            <h2>Time Spent</h2>
+            <p id="time">0 seconds</p>
+        </div>
+
+        <!-- Click Tracking -->
+        <div class="card">
+            <h2>Activity Count</h2>
+            <p id="clicks">0 clicks</p>
+            <button onclick="countClick()">Click Me</button>
+        </div>
+
+        <!-- Engagement Status -->
+        <div class="card">
+            <h2>Engagement Status</h2>
+            <p id="status">Low</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+let seconds = 0;
+let clicks = 0;
+
+// Time Tracking
+setInterval(function() {
+    seconds++;
+    document.getElementById("time").innerText = seconds + " seconds";
+
+    updateStatus();
+}, 1000);
+
+// Click Tracking
+function countClick() {
+    clicks++;
+    document.getElementById("clicks").innerText = clicks + " clicks";
+
+    updateStatus();
+}
+
+// Engagement Logic
+function updateStatus() {
+    let status = "Low";
+
+    if(seconds > 20 && clicks > 3) {
+        status = "High";
+    } else if(seconds > 10) {
+        status = "Medium";
+    }
+
+    document.getElementById("status").innerText = status;
+}
+</script>
+
+</body>
+</html>

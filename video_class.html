@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Live Class</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#f4f6f9;
+}
+
+/* Header */
+.header{
+    background:#2d6cdf;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* Layout */
+.container{
+    display:flex;
+}
+
+/* Sidebar */
+.sidebar{
+    width:220px;
+    height:100vh;
+    background:#2c3e50;
+    color:white;
+    padding-top:20px;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px;
+    color:white;
+    text-decoration:none;
+}
+
+.sidebar a:hover{
+    background:#1abc9c;
+}
+
+/* Content */
+.content{
+    flex:1;
+    padding:20px;
+}
+
+/* Video Box */
+.video-box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+iframe{
+    width:100%;
+    height:450px;
+    border:none;
+    border-radius:10px;
+}
+
+/* Chat Box */
+.chat-box{
+    background:white;
+    margin-top:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+.chat-messages{
+    height:200px;
+    overflow-y:auto;
+    border:1px solid #ccc;
+    padding:10px;
+    border-radius:5px;
+    margin-bottom:10px;
+    background:#fafafa;
+}
+
+/* Input */
+input{
+    width:70%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+/* Buttons */
+button{
+    padding:10px 15px;
+    background:#2d6cdf;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1b4fbf;
+}
+
+/* Popup Message */
+#msgBox{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#2d6cdf;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    display:none;
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Popup Message -->
+<div id="msgBox">
+    Joining Live Class...
+</div>
+
+<!-- Header -->
+<div class="header">
+    🎥 Live Virtual Class
+</div>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <a href="http://127.0.0.1:5000">
+            Dashboard
+        </a>
+
+        <a href="attendance.html">
+            Face Attendance
+        </a>
+
+        <a href="engagement.html">
+            Engagement
+        </a>
+
+        <a href="video_class.html">
+            Live Class
+        </a>
+
+        <a href="login.html">
+            Logout
+        </a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Video Section -->
+        <div class="video-box">
+
+            <h2>Live Class</h2>
+
+            <!-- Google Meet Preview -->
+            <iframe
+                src="https://meet.google.com"
+                allowfullscreen>
+            </iframe>
+
+            <br><br>
+
+            <button onclick="joinClass()">
+                Join Class
+            </button>
+
+        </div>
+
+        <!-- Chat Section -->
+        <div class="chat-box">
+
+            <h3>Class Chat</h3>
+
+            <div id="messages"
+                 class="chat-messages">
+            </div>
+
+            <input type="text"
+                   id="chatInput"
+                   placeholder="Type message...">
+
+            <button onclick="sendMessage()">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+// ✅ Join Class
+function joinClass(){
+
+    // Show popup
+    let box =
+    document.getElementById("msgBox");
+
+    box.style.display = "block";
+
+    // Open Google Meet
+    window.open(
+        "https://meet.google.com/xyz-abcd-efg",
+        "_blank"
+    );
+
+    // Hide popup
+    setTimeout(() => {
+
+        box.style.display = "none";
+
+    }, 2000);
+}
+
+
+// ✅ Chat Function
+function sendMessage(){
+
+    let input =
+    document.getElementById("chatInput");
+
+    let msg =
+    input.value.trim();
+
+    if(msg === ""){
+        return;
+    }
+
+    let messageBox =
+    document.getElementById("messages");
+
+    messageBox.innerHTML += `
+        <p><b>You:</b> ${msg}</p>
+    `;
+
+    // Auto Scroll
+    messageBox.scrollTop =
+    messageBox.scrollHeight;
+
+    // Clear input
+    input.value = "";
+}
+
+</script>
+
+</body>
+</html>

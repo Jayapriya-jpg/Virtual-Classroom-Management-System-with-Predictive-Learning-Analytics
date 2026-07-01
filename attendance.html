@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Face Attendance</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6f9;
+}
+
+.header {
+    background: #2d6cdf;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #2c3e50;
+    color: white;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #1abc9c;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Camera Box */
+.video-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+video {
+    width: 300px;
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #2d6cdf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1b4fbf;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    📷 Face Recognition Attendance
+</div>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="student_dashboard.html">Dashboard</a>
+        <a href="attendance.html">Face Attendance</a>
+        <a href="engagement.html">Engagement</a>
+        <a href="video_class.html">Live Class</a>
+        <a href="login.html">Logout</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <div class="video-box">
+            <h2>Camera Preview</h2>
+
+            <!-- Camera -->
+            <video id="video" autoplay></video>
+            <br>
+
+            <!-- Buttons -->
+            <button onclick="startCamera()">Start Camera</button>
+            <button onclick="capture()">Capture</button>
+            <button onclick="markAttendance()">Mark Attendance</button>
+
+            <p id="status"></p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+let video = document.getElementById("video");
+
+// Start Camera
+function startCamera() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+        video.srcObject = stream;
+    })
+    .catch(function(err) {
+        alert("Camera access denied!");
+    });
+}
+
+// Capture Image (Demo)
+function capture() {
+    document.getElementById("status").innerText = "Face Captured ✅";
+}
+
+// Mark Attendance (Demo)
+function markAttendance() {
+    document.getElementById("status").innerText = "Attendance Marked Successfully 🎉";
+}
+</script>
+
+</body>
+</html>
