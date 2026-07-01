@@ -117,23 +117,19 @@ The prediction results help faculty monitor student progress and provide timely 
 
  🔐 Login Page
 
-![Login page](Login.png)
+![Login Page](Login.png)
 
 👨‍🎓 Student Dashboard
 
-![Student dashboard](Student_dashboard.png)
+![Student Dashboard](Student_dashboard.png)
 
 👩‍🏫 Faculty Dashboard
 
-![Faculty dashboard](Faculty_dashboard.png)
+![Faculty Dashboard](Faculty_Dashboard.png)
 
 🛠️ Admin Dashboard
 
-![Admin dashboard](Admin_dashboard.png)
-
-📈 Performance Prediction
-
-![Performance prediction](Performance_prediction.png)
+![Admin Dashboard](Admin_Dashboard.png)
 
 🎯 Future Enhancements
 
