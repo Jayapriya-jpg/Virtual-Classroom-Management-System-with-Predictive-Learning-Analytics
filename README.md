@@ -79,12 +79,6 @@ git clone https://github.com/Jayapriya-jpg/Virtual-Classroom-Management-System.g
 cd Virtual-Classroom-Management-System
 ```
 
- Install Required Packages
-
-```bash
-pip install -r requirements.txt
-```
-
  Run the Application
 
 ```bash
