@@ -113,6 +113,28 @@ The prediction results help faculty monitor student progress and provide timely 
 - Live Video Class
 - Analytics Dashboard
 
+- 📷 Project Screenshots
+
+ 🔐 Login Page
+
+![Login page](Login.png)
+
+👨‍🎓 Student Dashboard
+
+![Student dashboard](Student_dashboard.png)
+
+👩‍🏫 Faculty Dashboard
+
+![Faculty dashboard](Faculty_dashboard.png)
+
+🛠️ Admin Dashboard
+
+![Admin dashboard](Admin_dashboard.png)
+
+📈 Performance Prediction
+
+![Performance prediction](Performance_prediction.png)
+
 🎯 Future Enhancements
 
 - Face Recognition Attendance
